@@ -7,6 +7,7 @@ use crate::{
     bitboard::Bitboard,
     square::{BoardSquare, Color},
 };
+pub use knight_attacks::KNIGHT_ATTACKS;
 pub use pawn_attacks::PAWN_ATTACKS;
 
 /// [square] -> squares it attacks

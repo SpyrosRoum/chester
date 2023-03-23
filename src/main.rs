@@ -2,12 +2,13 @@ mod attacks;
 mod bitboard;
 pub mod square;
 
-use {
-    attacks::PAWN_ATTACKS,
-    square::{BoardSquare, Color},
-};
+use strum::IntoEnumIterator;
+
+use crate::{attacks::KNIGHT_ATTACKS, bitboard::Bitboard, square::BoardSquare};
 
 fn main() {
-    let attacks = PAWN_ATTACKS[Color::White][BoardSquare::E8];
-    println!("{attacks}");
+    for square in BoardSquare::iter() {
+        let attacks = KNIGHT_ATTACKS[square];
+        println!("{}", Bitboard(*attacks | *Bitboard::from(square)));
+    }
 }
