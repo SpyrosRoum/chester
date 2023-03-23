@@ -1,18 +1,13 @@
+mod attacks;
 mod bitboard;
 pub mod square;
 
-use bitboard::Bitboard;
-use square::BoardSquare;
+use {
+    attacks::PAWN_ATTACKS,
+    square::{BoardSquare, Color},
+};
 
 fn main() {
-    let mut bb = Bitboard(4);
-
-    bb.set_bit(BoardSquare::B4 as usize);
-    bb.set_bit(BoardSquare::C3 as usize);
-
-    println!("{bb}");
-    bb.pop_bit(BoardSquare::C3 as usize);
-    println!("{bb}");
-    bb.pop_bit(BoardSquare::C3 as usize);
-    println!("{bb}");
+    let attacks = PAWN_ATTACKS[Color::White][BoardSquare::E8];
+    println!("{attacks}");
 }

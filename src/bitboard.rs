@@ -1,8 +1,26 @@
-use std::fmt::Display;
+use std::{
+    fmt::Display,
+    ops::{Deref, DerefMut},
+};
 
 use crate::square::BoardSquare;
 
+#[derive(Copy, Clone, Default)]
 pub struct Bitboard(pub u64);
+
+impl Deref for Bitboard {
+    type Target = u64;
+
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+
+impl DerefMut for Bitboard {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
 
 impl From<BoardSquare> for Bitboard {
     fn from(value: BoardSquare) -> Self {
@@ -47,3 +65,12 @@ impl Display for Bitboard {
         Ok(())
     }
 }
+
+/// Everything is set to 1 except for the A file
+pub const NOT_A_FILE: Bitboard = Bitboard(18374403900871474942);
+/// Everything is set to 1 except for the H file
+pub const NOT_H_FILE: Bitboard = Bitboard(9187201950435737471);
+/// Everything is set to 1 except for the H and G files
+pub const NOT_HG_FILES: Bitboard = Bitboard(4557430888798830399);
+/// Everything is set to 1 except for the A and B files
+pub const NOT_AB_FILES: Bitboard = Bitboard(18229723555195321596);

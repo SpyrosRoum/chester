@@ -1,4 +1,7 @@
+use strum::EnumIter;
+
 #[rustfmt::skip]
+#[derive(EnumIter, Copy, Clone)]
 pub enum BoardSquare {
     A8, B8, C8, D8, E8, F8, G8, H8,
     A7, B7, C7, D7, E7, F7, G7, H7,
@@ -8,4 +11,10 @@ pub enum BoardSquare {
     A3, B3, C3, D3, E3, F3, G3, H3,
     A2, B2, C2, D2, E2, F2, G2, H2,
     A1, B1, C1, D1, E1, F1, G1, H1,
+}
+
+#[derive(PartialEq, Eq)]
+pub enum Color {
+    White,
+    Black,
 }
