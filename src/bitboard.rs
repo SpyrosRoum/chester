@@ -1,6 +1,6 @@
 use std::{
     fmt::Display,
-    ops::{Deref, DerefMut},
+    ops::{BitAnd, BitOr, BitOrAssign, Deref, DerefMut, Shl, Shr},
 };
 
 use crate::square::BoardSquare;
@@ -63,6 +63,41 @@ impl Display for Bitboard {
         writeln!(f, "\n     a b c d e f g h")?;
 
         Ok(())
+    }
+}
+
+impl BitOrAssign for Bitboard {
+    fn bitor_assign(&mut self, rhs: Self) {
+        self.0 |= *rhs;
+    }
+}
+impl BitAnd for Bitboard {
+    type Output = Self;
+
+    fn bitand(self, rhs: Self) -> Self::Output {
+        Self(*self & *rhs)
+    }
+}
+impl BitOr for Bitboard {
+    type Output = Self;
+
+    fn bitor(self, rhs: Self) -> Self::Output {
+        Self(*self | *rhs)
+    }
+}
+
+impl Shr<usize> for Bitboard {
+    type Output = Self;
+
+    fn shr(self, rhs: usize) -> Self::Output {
+        Self(self.0.shr(rhs))
+    }
+}
+impl Shl<usize> for Bitboard {
+    type Output = Self;
+
+    fn shl(self, rhs: usize) -> Self::Output {
+        Self(self.0.shl(rhs))
     }
 }
 

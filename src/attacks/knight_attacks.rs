@@ -22,15 +22,15 @@ fn mask_attacks(square: BoardSquare) -> Bitboard {
 
     let knight = Bitboard::from(square);
 
-    *attacks |= (*knight >> 6) & *NOT_AB_FILES;
-    *attacks |= (*knight >> 10) & *NOT_HG_FILES;
-    *attacks |= (*knight >> 15) & *NOT_A_FILE;
-    *attacks |= (*knight >> 17) & *NOT_H_FILE;
+    attacks |= (knight >> 6) & NOT_AB_FILES;
+    attacks |= (knight >> 10) & NOT_HG_FILES;
+    attacks |= (knight >> 15) & NOT_A_FILE;
+    attacks |= (knight >> 17) & NOT_H_FILE;
 
-    *attacks |= (*knight << 6) & *NOT_HG_FILES;
-    *attacks |= (*knight << 10) & *NOT_AB_FILES;
-    *attacks |= (*knight << 15) & *NOT_H_FILE;
-    *attacks |= (*knight << 17) & *NOT_A_FILE;
+    attacks |= (knight << 6) & NOT_HG_FILES;
+    attacks |= (knight << 10) & NOT_AB_FILES;
+    attacks |= (knight << 15) & NOT_H_FILE;
+    attacks |= (knight << 17) & NOT_A_FILE;
 
     attacks
 }

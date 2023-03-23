@@ -30,19 +30,19 @@ fn mask_attacks(pawn_square: BoardSquare, to_play: Color) -> Bitboard {
             // If the attack to the right falls on the A file
             // it means that we are on the H file and it wrapped,
             // so don't count it
-            let right_attack = *bb >> 7;
-            *attacks |= right_attack & *NOT_A_FILE;
+            let right_attack = bb >> 7;
+            attacks |= right_attack & NOT_A_FILE;
 
             // Same as above but for the left
-            let left_attack = *bb >> 9;
-            *attacks |= left_attack & *NOT_H_FILE;
+            let left_attack = bb >> 9;
+            attacks |= left_attack & NOT_H_FILE;
         }
         Color::Black => {
-            let right_attack = *bb << 7;
-            *attacks |= right_attack & *NOT_H_FILE;
+            let right_attack = bb << 7;
+            attacks |= right_attack & NOT_H_FILE;
 
-            let left_attack = *bb << 9;
-            *attacks |= left_attack & *NOT_A_FILE;
+            let left_attack = bb << 9;
+            attacks |= left_attack & NOT_A_FILE;
         }
     }
 
